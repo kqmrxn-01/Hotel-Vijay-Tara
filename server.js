@@ -103,4 +103,11 @@ app.listen(PORT, () => {
   console.log(`📡 API: http://localhost:${PORT}/api/health\n`);
 });
 
+app.get("/", (req, res) => {
+  res.json({
+    success: true,
+    message: "API is running"
+  });
+});
+
 export default app;
