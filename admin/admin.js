@@ -119,6 +119,84 @@ function switchTab(tabName) {
     loadTabContent(tabName);
 }
 
+// Local mock database for offline / GitHub Pages demo mode
+const mockDb = {
+    rooms: [
+        { _id: 'r1', name: 'Deluxe Room', type: 'deluxe', price: 2499, capacity: 2, isAvailable: true, description: 'Spacious air-conditioned room with king bed & mountain view.', images: ['Room1.jpeg'], amenities: ['AC', 'Wi-Fi', 'TV', 'Room Service'] },
+        { _id: 'r2', name: 'Executive Room', type: 'executive', price: 3499, capacity: 3, isAvailable: true, description: 'Premium business-class room with dedicated desk & mini-fridge.', images: ['Room2.jpeg'], amenities: ['AC', 'Wi-Fi', 'TV', 'Mini Bar', 'Work Desk'] },
+        { _id: 'r3', name: 'Family Suite', type: 'family', price: 4999, capacity: 4, isAvailable: true, description: 'Luxurious suite with 2 king bedrooms, living area & balcony.', images: ['Room1.0.png'], amenities: ['AC', 'Wi-Fi', 'Smart TV', 'Living Room', 'Balcony'] }
+    ],
+    bookings: [
+        { _id: 'b101', bookingNumber: 'HVT-2026-001', customerName: 'Rajesh Sharma', customerPhone: '+91 98765 43210', roomType: 'deluxe', checkInDate: '2026-09-05', checkOutDate: '2026-09-07', guests: 2, totalAmount: 4998, status: 'confirmed', paymentStatus: 'paid' },
+        { _id: 'b102', bookingNumber: 'HVT-2026-002', customerName: 'Amit Verma', customerPhone: '+91 98123 45678', roomType: 'executive', checkInDate: '2026-09-06', checkOutDate: '2026-09-08', guests: 2, totalAmount: 6998, status: 'pending', paymentStatus: 'pending' },
+        { _id: 'b103', bookingNumber: 'HVT-2026-003', customerName: 'Priya Singh', customerPhone: '+91 97531 86420', roomType: 'family', checkInDate: '2026-09-08', checkOutDate: '2026-09-11', guests: 4, totalAmount: 14997, status: 'confirmed', paymentStatus: 'paid' }
+    ],
+    customers: [
+        { _id: 'c1', name: 'Rajesh Sharma', phone: '+91 98765 43210', email: 'rajesh.sharma@example.com', totalBookings: 3, totalSpent: 14994, lastBooking: '2026-09-05' },
+        { _id: 'c2', name: 'Amit Verma', phone: '+91 98123 45678', email: 'amit.verma@example.com', totalBookings: 1, totalSpent: 6998, lastBooking: '2026-09-06' },
+        { _id: 'c3', name: 'Priya Singh', phone: '+91 97531 86420', email: 'priya.singh@example.com', totalBookings: 2, totalSpent: 22495, lastBooking: '2026-09-08' }
+    ],
+    reviews: [
+        { _id: 'rev1', name: 'Sunil Gupta', rating: 5, comment: 'Exceptional hospitality, spacious and clean rooms! The pool was fantastic.', isApproved: true, createdAt: '2026-08-28' },
+        { _id: 'rev2', name: 'Ananya Roy', rating: 4, comment: 'Great location in Chhatarpur, delicious food at restaurant.', isApproved: true, createdAt: '2026-08-30' },
+        { _id: 'rev3', name: 'Vikram Mehta', rating: 5, comment: 'Staff was very courteous and helpful during our family trip.', isApproved: true, createdAt: '2026-09-01' }
+    ]
+};
+
+function getFallbackMock(endpoint, method, body) {
+    if (endpoint.includes('/auth/admin/login')) {
+        if (body && body.email === 'admin@hotelvijaytara.com' && body.password === 'Admin@123') {
+            return {
+                success: true,
+                data: {
+                    token: 'demo-token-vijay-tara-2026',
+                    user: { name: 'Super Admin', email: 'admin@hotelvijaytara.com', role: 'superadmin' }
+                }
+            };
+        } else {
+            throw new Error('Invalid credentials! Default: admin@hotelvijaytara.com / Admin@123');
+        }
+    }
+    if (endpoint.includes('/admin/dashboard')) {
+        return {
+            success: true,
+            data: {
+                totalRevenue: 284500,
+                todayRevenue: 12499,
+                totalBookings: 64,
+                todayBookings: 3,
+                availableRooms: 12,
+                occupiedRooms: 6,
+                pendingBookings: 1,
+                totalCustomers: 58,
+                recentBookings: mockDb.bookings
+            }
+        };
+    }
+    if (endpoint.includes('/bookings')) {
+        return { success: true, data: { bookings: mockDb.bookings, pagination: { total: mockDb.bookings.length, pages: 1 } } };
+    }
+    if (endpoint.includes('/rooms')) {
+        return { success: true, data: mockDb.rooms };
+    }
+    if (endpoint.includes('/customers')) {
+        return { success: true, data: { customers: mockDb.customers, pagination: { total: mockDb.customers.length, pages: 1 } } };
+    }
+    if (endpoint.includes('/reviews')) {
+        return { success: true, data: { reviews: mockDb.reviews, pagination: { total: mockDb.reviews.length, pages: 1 } } };
+    }
+    if (endpoint.includes('/gallery')) {
+        return { success: true, data: [] };
+    }
+    if (endpoint.includes('/contact')) {
+        return { success: true, data: [] };
+    }
+    if (endpoint.includes('/settings')) {
+        return { success: true, data: { hotelName: 'Hotel Vijay Tara', phone: '+91 80900 54641', email: 'info@hotelvijaytara.com' } };
+    }
+    return { success: true, data: {} };
+}
+
 // API Helper
 async function apiFetch(endpoint, method = 'GET', body = null) {
     const headers = { 'Content-Type': 'application/json' };
@@ -141,6 +219,12 @@ async function apiFetch(endpoint, method = 'GET', body = null) {
         }
         return data;
     } catch (err) {
+        // Fallback for static demo mode (e.g. GitHub Pages)
+        const mock = getFallbackMock(endpoint, method, body);
+        if (mock) {
+            console.warn(`[Demo Mode] Serving mock data for: ${endpoint}`);
+            return mock;
+        }
         console.error(`API Error (${endpoint}):`, err);
         throw err;
     }
