@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Vijay Tara — Admin Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body">
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Login View (Shown if not authenticated) -->
+    <div id="loginView" class="login-view">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-logo-icon">✦</div>
+                <h2>Hotel Vijay Tara</h2>
+                <p>Admin Portal Sign In</p>
+            </div>
+            <form id="adminLoginForm">
+                <div class="form-group">
+                    <label for="adminEmail"><i class="fas fa-envelope"></i> Email Address</label>
+                    <input type="email" id="adminEmail" value="admin@hotelvijaytara.com" placeholder="admin@hotelvijaytara.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="adminPassword"><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="adminPassword" value="Admin@123" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full" id="loginBtn">
+                    <span>Sign In to Dashboard</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+            <div class="login-footer">
+                <p><i class="fas fa-shield-alt"></i> Default Credentials: <code>admin@hotelvijaytara.com</code> / <code>Admin@123</code></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard App Layout (Shown when logged in) -->
+    <div id="appView" class="app-view hidden">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <span class="logo-star">✦</span>
+                <div class="logo-title">
+                    <span class="brand-name">Vijay Tara</span>
+                    <span class="brand-sub">ADMIN PANEL</span>
+                </div>
+            </div>
+            <nav class="sidebar-menu">
+                <button class="nav-item active" data-tab="dashboard">
+                    <i class="fas fa-th-large"></i><span>Dashboard</span>
+                </button>
+                <button class="nav-item" data-tab="bookings">
+                    <i class="fas fa-calendar-check"></i><span>Bookings</span>
+                    <span class="badge badge-gold hidden" id="pendingBookingBadge">0</span>
+                </button>
+                <button class="nav-item" data-tab="rooms">
+                    <i class="fas fa-bed"></i><span>Rooms</span>
+                </button>
+                <button class="nav-item" data-tab="customers">
+                    <i class="fas fa-users"></i><span>Customers</span>
+                </button>
+                <button class="nav-item" data-tab="reviews">
+                    <i class="fas fa-star"></i><span>Reviews</span>
+                </button>
+                <button class="nav-item" data-tab="gallery">
+                    <i class="fas fa-images"></i><span>Gallery</span>
+                </button>
+                <button class="nav-item" data-tab="messages">
+                    <i class="fas fa-envelope"></i><span>Messages</span>
+                    <span class="badge badge-gold hidden" id="unreadMsgBadge">0</span>
+                </button>
+                <button class="nav-item" data-tab="settings">
+                    <i class="fas fa-cog"></i><span>Settings</span>
+                </button>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="admin-user-info">
+                    <div class="user-avatar" id="adminUserAvatar">A</div>
+                    <div class="user-details">
+                        <span class="user-name" id="adminUserName">Super Admin</span>
+                        <span class="user-role" id="adminUserRole">Superadmin</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <div class="main-wrapper">
+            <!-- Top Navigation Bar -->
+            <header class="topbar">
+                <button class="mobile-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+                <h1 class="page-title" id="pageTitle">Dashboard Overview</h1>
+                <div class="topbar-actions">
+                    <button class="topbar-btn" id="openChangePassBtn" title="Change Password">
+                        <i class="fas fa-key"></i> <span>Password</span>
+                    </button>
+                    <button class="topbar-btn btn-logout" id="logoutBtn" title="Logout">
+                        <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Page Sections Container -->
+            <main class="content-container">
+                <!-- Dashboard Tab -->
+                <section id="tab-dashboard" class="tab-content active">
+                    <!-- Stats Grid -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon green"><i class="fas fa-indian-rupee-sign"></i></div>
+                            <div class="stat-data">
+                                <span class="stat-title">Total Revenue</span>
+                                <h3 class="stat-value" id="statTotalRevenue">₹0</h3>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon gold"><i class="fas fa-wallet"></i></div>
+                            <div class="stat-data">
+                                <span class="stat-title">Today's Revenue</span>
+                                <h3 class="stat-value" id="statTodayRevenue">₹0</h3>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon blue"><i class="fas fa-bookmark"></i></div>
+                            <div class="stat-data">
+                                <span class="stat-title">Total Bookings</span>
+                                <h3 class="stat-value" id="statTotalBookings">0</h3>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon purple"><i class="fas fa-calendar-day"></i></div>
+                            <div class="stat-data">
+                                <span class="stat-title">Today's Bookings</span>
+                                <h3 class="stat-value" id="statTodayBookings">0</h3>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon emerald"><i class="fas fa-door-open"></i></div>
+                            <div class="stat-data">
+                                <span class="stat-title">Available Rooms</span>
+                                <h3 class="stat-value" id="statAvailableRooms">0</h3>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon red"><i class="fas fa-user-lock"></i></div>
+                            <div class="stat-data">
+                                <span class="stat-title">Occupied Rooms</span>
+                                <h3 class="stat-value" id="statOccupiedRooms">0</h3>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon orange"><i class="fas fa-hourglass-half"></i></div>
+                            <div class="stat-data">
+                                <span class="stat-title">Pending Bookings</span>
+                                <h3 class="stat-value" id="statPendingBookings">0</h3>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon teal"><i class="fas fa-users"></i></div>
+                            <div class="stat-data">
+                                <span class="stat-title">Total Customers</span>
+                                <h3 class="stat-value" id="statTotalCustomers">0</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Revenue Overview & Recent Bookings -->
+                    <div class="dashboard-row">
+                        <div class="card chart-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-chart-line"></i> Revenue & Bookings Overview</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="custom-chart" id="dashboardRevenueChart">
+                                    <div class="chart-bars-container" id="chartBars"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card recent-card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-history"></i> Recent Bookings</h3>
+                                <button class="btn btn-sm btn-ghost" onclick="switchTab('bookings')">View All</button>
+                            </div>
+                            <div class="card-body table-responsive">
+                                <table class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Guest</th>
+                                            <th>Room</th>
+                                            <th>Check-In</th>
+                                            <th>Amount</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="recentBookingsTable">
+                                        <tr><td colspan="6" class="text-center">Loading recent bookings...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Bookings Tab -->
+                <section id="tab-bookings" class="tab-content">
+                    <div class="table-toolbar">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="bookingSearchInput" placeholder="Search by ID, guest name, phone..." />
+                        </div>
+                        <div class="filter-group">
+                            <label>Filter Status:</label>
+                            <select id="bookingFilterStatus">
+                                <option value="all">All Bookings</option>
+                                <option value="pending">Pending</option>
+                                <option value="confirmed">Confirmed</option>
+                                <option value="checked-in">Checked In</option>
+                                <option value="checked-out">Checked Out</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Booking ID</th>
+                                        <th>Guest Name</th>
+                                        <th>Phone</th>
+                                        <th>Room</th>
+                                        <th>Dates</th>
+                                        <th>Amount</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bookingsTableBody">
+                                    <tr><td colspan="8" class="text-center">Loading bookings...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Rooms Tab -->
+                <section id="tab-rooms" class="tab-content">
+                    <div class="table-toolbar justify-between">
+                        <h3>All Hotel Rooms</h3>
+                        <button class="btn btn-primary" id="openAddRoomBtn"><i class="fas fa-plus"></i> Add New Room</button>
+                    </div>
+
+                    <div class="rooms-admin-grid" id="roomsAdminGrid">
+                        <div class="text-center w-full">Loading rooms...</div>
+                    </div>
+                </section>
+
+                <!-- Customers Tab -->
+                <section id="tab-customers" class="tab-content">
+                    <div class="table-toolbar">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="customerSearchInput" placeholder="Search customer name, email, phone..." />
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Customer</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Bookings</th>
+                                        <th>Joined</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="customersTableBody">
+                                    <tr><td colspan="7" class="text-center">Loading customers...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Reviews Tab -->
+                <section id="tab-reviews" class="tab-content">
+                    <div class="table-toolbar">
+                        <select id="reviewFilterStatus">
+                            <option value="">All Statuses</option>
+                            <option value="pending" selected>Pending Moderation</option>
+                            <option value="approved">Approved</option>
+                            <option value="rejected">Rejected</option>
+                        </select>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Customer</th>
+                                        <th>Room</th>
+                                        <th>Rating</th>
+                                        <th>Comment</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="reviewsTableBody">
+                                    <tr><td colspan="6" class="text-center">Loading reviews...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Gallery Tab -->
+                <section id="tab-gallery" class="tab-content">
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h3><i class="fas fa-cloud-upload-alt"></i> Upload New Media</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="addGalleryForm" class="form-grid-3">
+                                <div class="form-group">
+                                    <label>Title</label>
+                                    <input type="text" id="galleryTitle" placeholder="e.g. Swimming Pool Evening" required />
+                                </div>
+                                <div class="form-group">
+                                    <label>Category</label>
+                                    <select id="galleryCategory">
+                                        <option value="hotel">Hotel Main</option>
+                                        <option value="rooms">Rooms</option>
+                                        <option value="restaurant">Restaurant</option>
+                                        <option value="pool">Pool</option>
+                                        <option value="events">Events</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Image URL</label>
+                                    <input type="url" id="galleryUrl" placeholder="https://..." required />
+                                </div>
+                                <div class="form-group col-span-3">
+                                    <button type="submit" class="btn btn-primary"><i class="fas fa-upload"></i> Upload Image</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="gallery-admin-grid" id="galleryAdminGrid">
+                        <div>Loading gallery...</div>
+                    </div>
+                </section>
+
+                <!-- Messages Tab -->
+                <section id="tab-messages" class="tab-content">
+                    <div class="card">
+                        <div class="card-body table-responsive">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>From</th>
+                                        <th>Subject</th>
+                                        <th>Message</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="messagesTableBody">
+                                    <tr><td colspan="6" class="text-center">Loading messages...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings Tab -->
+                <section id="tab-settings" class="tab-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-hotel"></i> Hotel System Settings</h3>
+                        </div>
+                        <div class="card-body">
+                            <form id="settingsForm" class="form-grid-2">
+                                <div class="form-group">
+                                    <label>Hotel Name</label>
+                                    <input type="text" id="settingHotelName" value="Hotel Vijay Tara" required />
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone Number</label>
+                                    <input type="text" id="settingPhone" value="+91 80900 54641" required />
+                                </div>
+                                <div class="form-group">
+                                    <label>Email Address</label>
+                                    <input type="email" id="settingEmail" value="info@hotelvijaytara.com" required />
+                                </div>
+                                <div class="form-group">
+                                    <label>WhatsApp Number</label>
+                                    <input type="text" id="settingWhatsapp" value="+918090054641" />
+                                </div>
+                                <div class="form-group col-span-2">
+                                    <label>Address</label>
+                                    <input type="text" id="settingAddress" value="Aurangabad - Daltenganj Rd, Main Road, Chhatarpur, Jharkhand 822113" required />
+                                </div>
+                                <div class="form-group col-span-2">
+                                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Settings</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modals -->
+
+    <!-- Add/Edit Room Modal -->
+    <div id="roomModal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="roomModalTitle">Add New Room</h3>
+                <button class="modal-close" onclick="closeModal('roomModal')">&times;</button>
+            </div>
+            <form id="roomForm">
+                <input type="hidden" id="roomId" />
+                <div class="modal-body form-grid-2">
+                    <div class="form-group">
+                        <label>Room Name</label>
+                        <input type="text" id="roomName" placeholder="e.g. Deluxe Room" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Room Number</label>
+                        <input type="text" id="roomNumber" placeholder="e.g. 101" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Room Type</label>
+                        <select id="roomTypeSelect" required>
+                            <option value="deluxe">Deluxe Room</option>
+                            <option value="executive">Executive Room</option>
+                            <option value="premium">Premium Room</option>
+                            <option value="family-suite">Family Suite</option>
+                            <option value="presidential-suite">Presidential Suite</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Price Per Night (₹)</label>
+                        <input type="number" id="roomPrice" placeholder="2499" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Bed Type</label>
+                        <select id="roomBedType">
+                            <option value="king">King Bed</option>
+                            <option value="queen">Queen Bed</option>
+                            <option value="twin">Twin Beds</option>
+                            <option value="double">Double Bed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Max Guests</label>
+                        <input type="number" id="roomMaxGuests" value="2" min="1" max="10" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Status</label>
+                        <select id="roomStatus">
+                            <option value="available">Available</option>
+                            <option value="occupied">Occupied</option>
+                            <option value="maintenance">Maintenance</option>
+                            <option value="disabled">Disabled</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Image URL</label>
+                        <input type="url" id="roomImageUrl" placeholder="https://images..." />
+                    </div>
+                    <div class="form-group col-span-2">
+                        <label>Description</label>
+                        <textarea id="roomDesc" rows="3" placeholder="Enter room details..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-ghost" onclick="closeModal('roomModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Room</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Invoice / Booking Details Modal -->
+    <div id="invoiceModal" class="modal-overlay hidden">
+        <div class="modal-card modal-lg">
+            <div class="modal-header">
+                <h3>Booking Invoice</h3>
+                <button class="modal-close" onclick="closeModal('invoiceModal')">&times;</button>
+            </div>
+            <div class="modal-body invoice-printable" id="invoiceContent">
+                <!-- Rendered dynamically -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" onclick="window.print()"><i class="fas fa-print"></i> Print Invoice</button>
+                <button class="btn btn-primary" onclick="closeModal('invoiceModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reply Message Modal -->
+    <div id="replyModal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Reply to Inquiry</h3>
+                <button class="modal-close" onclick="closeModal('replyModal')">&times;</button>
+            </div>
+            <form id="replyForm">
+                <input type="hidden" id="replyContactId" />
+                <div class="modal-body">
+                    <p><strong>To:</strong> <span id="replyToEmail"></span></p>
+                    <p><strong>Subject:</strong> Re: <span id="replyToSubject"></span></p>
+                    <div class="form-group mt-3">
+                        <label>Your Reply Message</label>
+                        <textarea id="replyText" rows="5" placeholder="Type your response here..." required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-ghost" onclick="closeModal('replyModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Send Reply</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="changePassModal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3>Change Password</h3>
+                <button class="modal-close" onclick="closeModal('changePassModal')">&times;</button>
+            </div>
+            <form id="changePassForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Current Password</label>
+                        <input type="password" id="currentPass" required />
+                    </div>
+                    <div class="form-group">
+                        <label>New Password</label>
+                        <input type="password" id="newPass" required minlength="6" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-ghost" onclick="closeModal('changePassModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Update Password</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

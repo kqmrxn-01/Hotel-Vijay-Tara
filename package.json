@@ -1,0 +1,39 @@
+{
+  "name": "hotel-vijay-tara",
+  "version": "1.0.0",
+  "description": "Hotel Vijay Tara - Hotel Management & Booking System",
+  "main": "api/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node --watch server/server.js",
+    "build": "echo 'Build complete'"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cloudinary": "^2.6.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.15.1",
+    "multer": "^1.4.5-lts.2",
+    "nodemailer": "^7.0.5",
+    "razorpay": "^2.9.6",
+    "validator": "^13.15.0"
+  },
+  "devDependencies": {
+    "mongodb-memory-server": "^11.2.0"
+  },
+  "keywords": [
+    "hotel",
+    "booking",
+    "express",
+    "mongodb",
+    "admin-dashboard"
+  ],
+  "author": "Hotel Vijay Tara",
+  "license": "ISC"
+}

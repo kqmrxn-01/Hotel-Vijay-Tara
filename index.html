@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Vijay Tara — Luxury Stay in Chhatarpur, Jharkhand</title>
+    <meta name="description" content="Experience luxury, comfort, and exceptional hospitality at Hotel Vijay Tara in Chhatarpur, Jharkhand. Book deluxe rooms, executive rooms & family suites starting ₹2,499/night.">
+    <meta name="keywords" content="Hotel Vijay Tara, Chhatarpur hotel, Jharkhand hotel, luxury hotel, hotel booking">
+    <meta name="author" content="Hotel Vijay Tara">
+    <meta property="og:title" content="Hotel Vijay Tara — Premium Hospitality in Chhatarpur">
+    <meta property="og:description" content="4-star rated hotel with swimming pool, restaurant, free Wi-Fi & parking.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Cursor Glow -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-inner">
+            <div class="loader-logo">✦</div>
+            <div class="loader-bar"><div class="loader-progress"></div></div>
+            <span class="loader-text">Hotel Vijay Tara</span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                <span class="logo-icon"><img src="logo.10.png" alt=""></span>
+                <div class="logo-text">
+                    <span class="logo-main">Vijay Tara</span>
+                    <span class="logo-sub">HOTEL & RESORT</span>
+                </div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active" data-text="Home">Home</a></li>
+                <li><a href="#rooms" class="nav-link" data-text="Rooms">Rooms</a></li>
+                <li><a href="#gallery" class="nav-link" data-text="Gallery">Gallery</a></li>
+                <li><a href="#services" class="nav-link" data-text="Services">Services</a></li>
+                <li><a href="#amenities" class="nav-link" data-text="Amenities">Amenities</a></li>
+                <li><a href="#contact" class="nav-link" data-text="Contact">Contact</a></li>
+                <li><a href="/admin" class="nav-link" data-text="Admin" target="_blank"><i class="fas fa-lock"></i> Admin</a></li>
+            </ul>
+            <a href="#booking" class="nav-book-btn magnetic-btn">
+                <span>Book Now</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+        <div class="hero-bg" id="heroBg">
+            <img src="Front Img.png" alt="Hotel Vijay Tara exterior" loading="eager">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-particles" id="heroParticles"></div>
+        <div class="hero-content">
+            <div class="reveal-wrapper">
+                <div class="hero-badge motion-element" data-motion="fade-up" data-delay="0.3">
+                    <span class="badge-dot"></span>
+                    <span>Premium Hospitality Since 2015</span>
+                </div>
+            </div>
+            <h1 class="hero-title">
+                <div class="title-line">
+                    <span class="motion-element" data-motion="fade-up" data-delay="0.5">Welcome to</span>
+                </div>
+                <div class="title-line">
+                    <span class="hero-title-accent motion-element" data-motion="fade-up" data-delay="0.7">Hotel Vijay Tara</span>
+                </div>
+            </h1>
+            <p class="hero-subtitle motion-element" data-motion="fade-up" data-delay="0.9">
+                Experience luxury, comfort, and exceptional hospitality in the heart of Chhatarpur, Jharkhand.
+            </p>
+            <div class="hero-stats motion-element" data-motion="fade-up" data-delay="1.1">
+                <div class="stat-item">
+                    <span class="stat-number" data-count="4.2">0</span>
+                    <span class="stat-label">Rating</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="872">0</span>
+                    <span class="stat-label">Reviews</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat-item">
+                    <span class="stat-number" data-count="10">0</span>
+                    <span class="stat-label">Amenities</span>
+                </div>
+            </div>
+            <div class="hero-actions motion-element" data-motion="fade-up" data-delay="1.3">
+                <a href="#booking" class="btn btn-primary magnetic-btn">
+                    <span>Book Your Stay</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#rooms" class="btn btn-ghost magnetic-btn">
+                    <span>Explore Rooms</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+                </a>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <div class="scroll-line"></div>
+            <span>Scroll</span>
+        </div>
+    </header>
+
+    <!-- Marquee Strip -->
+    <div class="marquee-strip">
+        <div class="marquee-track">
+            <span>✦ Luxury Stay</span>
+            <span>✦ Free Wi-Fi</span>
+            <span>✦ Swimming Pool</span>
+            <span>✦ Fine Dining</span>
+            <span>✦ 24/7 Service</span>
+            <span>✦ Free Parking</span>
+            <span>✦ AC Rooms</span>
+            <span>✦ Wedding Venue</span>
+            <span>✦ Luxury Stay</span>
+            <span>✦ Free Wi-Fi</span>
+            <span>✦ Swimming Pool</span>
+            <span>✦ Fine Dining</span>
+            <span>✦ 24/7 Service</span>
+            <span>✦ Free Parking</span>
+            <span>✦ AC Rooms</span>
+            <span>✦ Wedding Venue</span>
+        </div>
+    </div>
+
+    <!-- Quick Info -->
+    <section class="quick-info">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card motion-element" data-motion="fade-up" data-stagger="0">
+                    <div class="info-icon-wrap">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h4>Check-in</h4>
+                    <p>2:00 PM</p>
+                </div>
+                <div class="info-card motion-element" data-motion="fade-up" data-stagger="1">
+                    <div class="info-icon-wrap">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </div>
+                    <h4>Check-out</h4>
+                    <p>11:00 AM</p>
+                </div>
+                <div class="info-card motion-element" data-motion="fade-up" data-stagger="2">
+                    <div class="info-icon-wrap">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h4>Call Us</h4>
+                    <p><a href="tel:+918090054641">+91 80900 54641</a></p>
+                </div>
+                <div class="info-card motion-element" data-motion="fade-up" data-stagger="3">
+                    <div class="info-icon-wrap">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h4>Location</h4>
+                    <p>Chhatarpur, Jharkhand</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="booking-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag motion-element" data-motion="fade-up">Reservations</span>
+                <h2 class="section-title motion-element" data-motion="fade-up">
+                    Book Your <span class="accent">Perfect Stay</span>
+                </h2>
+                <p class="section-desc motion-element" data-motion="fade-up">Select your dates and room preference to check availability.</p>
+            </div>
+            <form class="booking-form motion-element" data-motion="scale-up" id="bookingForm">
+                <div class="booking-grid">
+                    <div class="form-group">
+                        <label for="checkInDate">Check-in Date</label>
+                        <input type="date" id="checkInDate" name="checkIn" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="checkOutDate">Check-out Date</label>
+                        <input type="date" id="checkOutDate" name="checkOut" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="roomType">Room Type</label>
+                        <select id="roomType" name="roomType" required>
+                            <option value="">Select Room</option>
+                            <option value="deluxe">Deluxe Room — ₹2,499/night</option>
+                            <option value="executive">Executive Room — ₹3,499/night</option>
+                            <option value="family">Family Suite — ₹4,999/night</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="guests">Guests</label>
+                        <select id="guests" name="guests" required>
+                            <option value="1">1 Guest</option>
+                            <option value="2" selected>2 Guests</option>
+                            <option value="3">3 Guests</option>
+                            <option value="4">4 Guests</option>
+                            <option value="5">5 Guests</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="guestName">Full Name</label>
+                        <input type="text" id="guestName" name="guestName" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="guestPhone">Phone Number</label>
+                        <input type="tel" id="guestPhone" name="guestPhone" placeholder="+91 XXXXX XXXXX" required>
+                    </div>
+                </div>
+                <div class="booking-summary" id="bookingSummary" style="display: none;">
+                    <div class="summary-inner">
+                        <h4><i class="fas fa-receipt"></i> Booking Summary</h4>
+                        <div class="summary-details" id="summaryDetails"></div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full magnetic-btn" id="bookBtn">
+                    <span>Confirm Booking via WhatsApp</span>
+                    <i class="fab fa-whatsapp"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Rooms Section -->
+    <section id="rooms" class="rooms-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag motion-element" data-motion="fade-up">Accommodations</span>
+                <h2 class="section-title motion-element" data-motion="fade-up">
+                    Our <span class="accent">Rooms & Suites</span>
+                </h2>
+                <p class="section-desc motion-element" data-motion="fade-up">A unique blend of comfort and elegance, designed for your perfect stay.</p>
+            </div>
+            <div class="rooms-grid">
+                <!-- Deluxe Room -->
+                <div class="room-card motion-element" data-motion="fade-up" data-stagger="0">
+                    <div class="room-image">
+                        <img src="Room1.0.png" alt="Deluxe Room" loading="lazy">
+                        <div class="room-overlay">
+                            <a href="#booking" class="room-cta magnetic-btn" onclick="selectRoom('deluxe')">
+                                <span>Book Now</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        <div class="room-badge available">Available</div>
+                    </div>
+                    <div class="room-details">
+                        <div class="room-header">
+                            <h3>Deluxe Room</h3>
+                            <div class="room-price">
+                                <span class="price-currency">₹</span>
+                                <span class="price-amount">2,499</span>
+                                <span class="price-per">/night</span>
+                            </div>
+                        </div>
+                        <div class="room-meta">
+                            <span><i class="fas fa-bed"></i> King Bed</span>
+                            <span><i class="fas fa-users"></i> 2 Guests</span>
+                        </div>
+                        <div class="room-features">
+                            <span>Free Wi-Fi</span>
+                            <span>AC</span>
+                            <span>TV</span>
+                            <span>Mini Fridge</span>
+                            <span>Room Service</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Executive Room -->
+                <div class="room-card featured motion-element" data-motion="fade-up" data-stagger="1">
+                    <div class="room-popular-tag">Most Popular</div>
+                    <div class="room-image">
+                        <img src="Room1.jpeg" alt="Executive Room" loading="lazy">
+                        <div class="room-overlay">
+                            <a href="#booking" class="room-cta magnetic-btn" onclick="selectRoom('executive')">
+                                <span>Book Now</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                        <div class="room-badge available">Available</div>
+                    </div>
+                    <div class="room-details">
+                        <div class="room-header">
+                            <h3>Executive Room</h3>
+                            <div class="room-price">
+                                <span class="price-currency">₹</span>
+                                <span class="price-amount">3,499</span>
+                                <span class="price-per">/night</span>
+                            </div>
+                        </div>
+                        <div class="room-meta">
+                            <span><i class="fas fa-bed"></i> Queen Bed</span>
+                            <span><i class="fas fa-users"></i> 3 Guests</span>
+                        </div>
+                        <div class="room-features">
+                            <span>AC</span>
+                            <span>Wi-Fi</span>
+                            <span>Smart TV</span>
+                            <span>Balcony</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Family Suite -->
+                <div class="room-card motion-element" data-motion="fade-up" data-stagger="2">
+                    <div class="room-image">
+                        <img src="Room1.jpeg" alt="Family Suite" loading="lazy">
+                        <div class="room-overlay sold-out-overlay">
+                            <span class="sold-out-text">Currently Unavailable</span>
+                        </div>
+                        <div class="room-badge sold-out">Sold Out</div>
+                    </div>
+                    <div class="room-details">
+                        <div class="room-header">
+                            <h3>Family Suite</h3>
+                            <div class="room-price">
+                                <span class="price-currency">₹</span>
+                                <span class="price-amount">4,999</span>
+                                <span class="price-per">/night</span>
+                            </div>
+                        </div>
+                        <div class="room-meta">
+                            <span><i class="fas fa-bed"></i> 2 King Beds</span>
+                            <span><i class="fas fa-users"></i> 5 Guests</span>
+                        </div>
+                        <div class="room-features">
+                            <span>Living Area</span>
+                            <span>Dining Table</span>
+                            <span>Smart TV</span>
+                            <span>Wi-Fi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag motion-element" data-motion="fade-up">Visual Tour</span>
+                <h2 class="section-title motion-element" data-motion="fade-up">
+                    Photo <span class="accent">Gallery</span>
+                </h2>
+                <p class="section-desc motion-element" data-motion="fade-up">Take a visual tour of our stunning property and facilities.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item large motion-element" data-motion="scale-up" data-stagger="0" onclick="openLightbox(0)">
+                    <img src="Front Img.png" alt="Hotel Exterior" loading="lazy">
+                    <div class="gallery-info">
+                        <span class="gallery-tag">Exterior</span>
+                        <h4>Hotel Vijay Tara</h4>
+                        <div class="gallery-view">
+                            <i class="fas fa-expand-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item motion-element" data-motion="scale-up" data-stagger="1" onclick="openLightbox(1)">
+                    <img src="Gallery2.jpeg" alt="Grand Lobby" loading="lazy">
+                    <div class="gallery-info">
+                        <span class="gallery-tag">Interior</span>
+                        <h4>Grand Lobby</h4>
+                        <div class="gallery-view"><i class="fas fa-expand-alt"></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item motion-element" data-motion="scale-up" data-stagger="2" onclick="openLightbox(2)">
+                    <img src="Pool.jpeg" alt="Swimming Pool" loading="lazy">
+                    <div class="gallery-info">
+                        <span class="gallery-tag">Leisure</span>
+                        <h4>Swimming Pool</h4>
+                        <div class="gallery-view"><i class="fas fa-expand-alt"></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item tall motion-element" data-motion="scale-up" data-stagger="3" onclick="openLightbox(3)">
+                    <img src="Gallery4.png" alt="Restaurant" loading="lazy">
+                    <div class="gallery-info">
+                        <span class="gallery-tag">Dining</span>
+                        <h4>Restaurant</h4>
+                        <div class="gallery-view"><i class="fas fa-expand-alt"></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item motion-element" data-motion="scale-up" data-stagger="4" onclick="openLightbox(4)">
+                    <img src="Room2.jpeg" alt="Deluxe Room" loading="lazy">
+                    <div class="gallery-info">
+                        <span class="gallery-tag">Room</span>
+                        <h4>Deluxe Room</h4>
+                        <div class="gallery-view"><i class="fas fa-expand-alt"></i></div>
+                    </div>
+                </div>
+                <div class="gallery-item motion-element" data-motion="scale-up" data-stagger="5" onclick="openLightbox(5)">
+                    <img src="Reception.jpeg" alt="Conference Hall" loading="lazy">
+                    <div class="gallery-info">
+                        <span class="gallery-tag">Events</span>
+                        <h4>Conference Hall</h4>
+                        <div class="gallery-view"><i class="fas fa-expand-alt"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close"><i class="fas fa-times"></i></button>
+        <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+        <button class="lightbox-nav next" id="lightboxNext" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+        <div class="lightbox-content">
+            <img id="lightboxImg" src="" alt="">
+            <p class="lightbox-caption" id="lightboxCaption"></p>
+            <div class="lightbox-counter" id="lightboxCounter"></div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag motion-element" data-motion="fade-up">What We Offer</span>
+                <h2 class="section-title motion-element" data-motion="fade-up">
+                    Our <span class="accent">Services</span>
+                </h2>
+                <p class="section-desc motion-element" data-motion="fade-up">From comfortable stays to grand celebrations, we cater to every need.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card motion-element" data-motion="fade-up" data-stagger="0">
+                    <div class="service-number">01</div>
+                    <div class="service-icon"><i class="fas fa-bed"></i></div>
+                    <h3>Room Booking</h3>
+                    <p>Deluxe, Executive and Family rooms for a comfortable stay.</p>
+                    <div class="service-arrow"><i class="fas fa-arrow-right"></i></div>
+                </div>
+                <div class="service-card motion-element" data-motion="fade-up" data-stagger="1">
+                    <div class="service-number">02</div>
+                    <div class="service-icon"><i class="fas fa-utensils"></i></div>
+                    <h3>Restaurant</h3>
+                    <p>Authentic Indian cuisine and continental dishes by expert chefs.</p>
+                    <div class="service-arrow"><i class="fas fa-arrow-right"></i></div>
+                </div>
+                <div class="service-card motion-element" data-motion="fade-up" data-stagger="2">
+                    <div class="service-number">03</div>
+                    <div class="service-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h3>Conference Hall</h3>
+                    <p>State-of-the-art facilities for meetings and corporate events.</p>
+                    <div class="service-arrow"><i class="fas fa-arrow-right"></i></div>
+                </div>
+                <div class="service-card motion-element" data-motion="fade-up" data-stagger="3">
+                    <div class="service-number">04</div>
+                    <div class="service-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Wedding Events</h3>
+                    <p>Grand banquet halls to make your special day unforgettable.</p>
+                    <div class="service-arrow"><i class="fas fa-arrow-right"></i></div>
+                </div>
+                <div class="service-card motion-element" data-motion="fade-up" data-stagger="4">
+                    <div class="service-number">05</div>
+                    <div class="service-icon"><i class="fas fa-car"></i></div>
+                    <h3>Airport Pickup</h3>
+                    <p>Hassle-free airport transfers and local transport on request.</p>
+                    <div class="service-arrow"><i class="fas fa-arrow-right"></i></div>
+                </div>
+                <div class="service-card motion-element" data-motion="fade-up" data-stagger="5">
+                    <div class="service-number">06</div>
+                    <div class="service-icon"><i class="fas fa-parking"></i></div>
+                    <h3>Free Parking</h3>
+                    <p>Spacious and secure complimentary parking for all guests.</p>
+                    <div class="service-arrow"><i class="fas fa-arrow-right"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section id="amenities" class="amenities-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag motion-element" data-motion="fade-up">Facilities</span>
+                <h2 class="section-title motion-element" data-motion="fade-up">
+                    Premium <span class="accent">Amenities</span>
+                </h2>
+            </div>
+            <div class="amenities-grid">
+                <div class="amenity-item motion-element" data-motion="fade-up" data-stagger="0">
+                    <i class="fas fa-wifi"></i><span>Free Wi-Fi</span>
+                </div>
+                <div class="amenity-item motion-element" data-motion="fade-up" data-stagger="1">
+                    <i class="fas fa-parking"></i><span>Free Parking</span>
+                </div>
+                <div class="amenity-item motion-element" data-motion="fade-up" data-stagger="2">
+                    <i class="fas fa-swimming-pool"></i><span>Swimming Pool</span>
+                </div>
+                <div class="amenity-item motion-element" data-motion="fade-up" data-stagger="3">
+                    <i class="fas fa-utensils"></i><span>Restaurant</span>
+                </div>
+                <div class="amenity-item motion-element" data-motion="fade-up" data-stagger="4">
+                    <i class="fas fa-coffee"></i><span>Breakfast</span>
+                </div>
+                <div class="amenity-item motion-element" data-motion="fade-up" data-stagger="5">
+                    <i class="fas fa-snowflake"></i><span>Air Conditioning</span>
+                </div>
+                <div class="amenity-item motion-element" data-motion="fade-up" data-stagger="6">
+                    <i class="fas fa-tshirt"></i><span>Laundry</span>
+                </div>
+                <div class="amenity-item motion-element" data-motion="fade-up" data-stagger="7">
+                    <i class="fas fa-concierge-bell"></i><span>Room Service</span>
+                </div>
+                <div class="amenity-item motion-element" data-motion="fade-up" data-stagger="8">
+                    <i class="fas fa-headset"></i><span>24×7 Reception</span>
+                </div>
+                <div class="amenity-item motion-element" data-motion="fade-up" data-stagger="9">
+                    <i class="fas fa-shield-alt"></i><span>CCTV Security</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag motion-element" data-motion="fade-up">Guest Reviews</span>
+                <h2 class="section-title motion-element" data-motion="fade-up">
+                    What Our <span class="accent">Guests Say</span>
+                </h2>
+            </div>
+            <div class="testimonials-container motion-element" data-motion="fade-up">
+                <div class="testimonials-track" id="testimonialsTrack">
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"</div>
+                        <p>Amazing experience! The rooms were spotless, the staff was incredibly friendly, and the food was delicious. Will definitely come back!</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">RK</div>
+                            <div>
+                                <strong>Rajesh Kumar</strong>
+                                <span>Business Traveller</span>
+                            </div>
+                            <div class="testimonial-stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"</div>
+                        <p>Perfect family getaway. The family suite was spacious and well-maintained. Kids loved the swimming pool. Great value for money.</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">PS</div>
+                            <div>
+                                <strong>Priya Sharma</strong>
+                                <span>Family Vacation</span>
+                            </div>
+                            <div class="testimonial-stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-quote">"</div>
+                        <p>Hosted our wedding reception here and it was absolutely magical. The hall was beautifully decorated and the catering was top-notch.</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">AM</div>
+                            <div>
+                                <strong>Amit Mishra</strong>
+                                <span>Wedding Event</span>
+                            </div>
+                            <div class="testimonial-stars">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-controls">
+                    <button class="t-btn" id="tPrev" aria-label="Previous"><i class="fas fa-arrow-left"></i></button>
+                    <div class="t-dots" id="tDots">
+                        <button class="t-dot active" data-i="0"></button>
+                        <button class="t-dot" data-i="1"></button>
+                        <button class="t-dot" data-i="2"></button>
+                    </div>
+                    <button class="t-btn" id="tNext" aria-label="Next"><i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag motion-element" data-motion="fade-up">Get in Touch</span>
+                <h2 class="section-title motion-element" data-motion="fade-up">
+                    Contact <span class="accent">Us</span>
+                </h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-card motion-element" data-motion="fade-right" data-stagger="0">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h4>Our Address</h4>
+                            <p>Aurangabad - Daltenganj Rd, Main Road, Chhatarpur, Jharkhand 822113</p>
+                        </div>
+                    </div>
+                    <div class="contact-card motion-element" data-motion="fade-right" data-stagger="1">
+                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p><a href="tel:+918090054641">+91 80900 54641</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-card motion-element" data-motion="fade-right" data-stagger="2">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h4>Email</h4>
+                            <p><a href="mailto:info@hotelvijaytara.com">info@hotelvijaytara.com</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-card motion-element" data-motion="fade-right" data-stagger="3">
+                        <div class="contact-icon whatsapp"><i class="fab fa-whatsapp"></i></div>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <p><a href="https://wa.me/918090054641" target="_blank">Chat with us instantly</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-map motion-element" data-motion="fade-left">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3637.5!2d84.0!3d24.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDAyJzI0LjAiTiA4NMKwMDEnMTIuMCJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                        title="Hotel Vijay Tara on Google Maps">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Strip -->
+    <section class="payment-strip">
+        <div class="container">
+            <div class="payment-inner motion-element" data-motion="fade-up">
+                <span class="payment-label">We Accept</span>
+                <div class="payment-methods">
+                    <div class="pay-item"><i class="fas fa-money-bill-wave"></i> Cash</div>
+                    <div class="pay-item"><i class="fas fa-mobile-alt"></i> UPI</div>
+                    <div class="pay-item"><i class="far fa-credit-card"></i> Credit Card</div>
+                    <div class="pay-item"><i class="fas fa-credit-card"></i> Debit Card</div>
+                    <div class="pay-item"><i class="fas fa-university"></i> Net Banking</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#home" class="footer-logo">
+                        <span class="logo-icon">✦</span>
+                        <div class="logo-text">
+                            <span class="logo-main">Vijay Tara</span>
+                            <span class="logo-sub">HOTEL & RESORT</span>
+                        </div>
+                    </a>
+                    <p>Experience luxury, comfort, and exceptional hospitality at Hotel Vijay Tara in Chhatarpur, Jharkhand.</p>
+                    <div class="footer-social">
+                        <a href="https://wa.me/918090054641" target="_blank" class="magnetic-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="magnetic-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="magnetic-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="magnetic-btn" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#rooms">Rooms</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="/admin" target="_blank"><i class="fas fa-user-shield"></i> Admin Portal</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#booking">Room Booking</a></li>
+                        <li><a href="#services">Restaurant</a></li>
+                        <li><a href="#services">Conference Hall</a></li>
+                        <li><a href="#services">Wedding Events</a></li>
+                        <li><a href="#services">Airport Pickup</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact-col">
+                    <h4>Contact</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Main Road, Chhatarpur, Jharkhand 822113</p>
+                    <p><i class="fas fa-phone-alt"></i> <a href="tel:+918090054641">+91 80900 54641</a></p>
+                    <p><i class="fas fa-envelope"></i> <a href="mailto:info@hotelvijaytara.com">info@hotelvijaytara.com</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Hotel Vijay Tara. All Rights Reserved.</p>
+                <p>Crafted with <i class="fas fa-heart"></i> in Chhatarpur</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/918090054641?text=Hello!%20I%20would%20like%20to%20enquire%20about%20room%20availability%20at%20Hotel%20Vijay%20Tara." 
+       class="whatsapp-float" target="_blank" id="whatsappBtn" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span class="wa-pulse"></span>
+    </a>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
