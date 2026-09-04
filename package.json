@@ -6,8 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node server/server.js",
-    "dev": "node --watch server/server.js",
-    "build": "echo 'Build complete'"
+    "dev": "node --watch server/server.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
@@ -23,9 +22,6 @@
     "nodemailer": "^7.0.5",
     "razorpay": "^2.9.6",
     "validator": "^13.15.0"
-  },
-  "devDependencies": {
-    "mongodb-memory-server": "^11.2.0"
   },
   "keywords": [
     "hotel",

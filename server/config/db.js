@@ -57,18 +57,7 @@ const connectDB = async () => {
       await seedAdmin();
       return;
     } catch (error) {
-      console.warn(`⚠️ Local MongoDB failed (${error.message}). Trying In-Memory Database...`);
-      try {
-        const { MongoMemoryServer } = await import('mongodb-memory-server');
-        const mongoServer = await MongoMemoryServer.create();
-        const mongoUri = mongoServer.getUri();
-        const conn = await mongoose.connect(mongoUri);
-        isConnected = true;
-        console.log(`✅ In-Memory MongoDB Started & Connected! Host: ${conn.connection.host}`);
-        await seedAdmin();
-      } catch (memError) {
-        console.error(`❌ Database Initialization Failed: ${memError.message}`);
-      }
+      console.warn(`⚠️ Local MongoDB connection failed: ${error.message}`);
     }
   } else {
     console.warn('⚠️ MONGO_URI is not configured in Vercel Environment Variables. Please set MONGO_URI in project settings.');
