@@ -134,25 +134,192 @@ function switchTab(tabName) {
 // Local mock database for offline / GitHub Pages demo mode
 const mockDb = {
     rooms: [
-        { _id: 'r1', name: 'Deluxe Room', type: 'deluxe', price: 2499, capacity: 2, isAvailable: true, description: 'Spacious air-conditioned room with king bed & mountain view.', images: ['Room1.jpeg'], amenities: ['AC', 'Wi-Fi', 'TV', 'Room Service'] },
-        { _id: 'r2', name: 'Executive Room', type: 'executive', price: 3499, capacity: 3, isAvailable: true, description: 'Premium business-class room with dedicated desk & mini-fridge.', images: ['Room2.jpeg'], amenities: ['AC', 'Wi-Fi', 'TV', 'Mini Bar', 'Work Desk'] },
-        { _id: 'r3', name: 'Family Suite', type: 'family', price: 4999, capacity: 4, isAvailable: true, description: 'Luxurious suite with 2 king bedrooms, living area & balcony.', images: ['Room1.0.png'], amenities: ['AC', 'Wi-Fi', 'Smart TV', 'Living Room', 'Balcony'] }
+        {
+            _id: 'r1',
+            name: 'Deluxe Room',
+            roomNumber: '101',
+            type: 'deluxe',
+            pricePerNight: 2499,
+            bedType: 'King',
+            maxGuests: 2,
+            status: 'available',
+            description: 'Spacious air-conditioned room with king bed & mountain view.',
+            images: [{ url: 'Room1.jpeg' }]
+        },
+        {
+            _id: 'r2',
+            name: 'Executive Room',
+            roomNumber: '201',
+            type: 'executive',
+            pricePerNight: 3499,
+            bedType: 'King',
+            maxGuests: 3,
+            status: 'available',
+            description: 'Premium business-class room with dedicated desk & mini-fridge.',
+            images: [{ url: 'Room2.jpeg' }]
+        },
+        {
+            _id: 'r3',
+            name: 'Family Suite',
+            roomNumber: '301',
+            type: 'family',
+            pricePerNight: 4999,
+            bedType: 'King',
+            maxGuests: 4,
+            status: 'occupied',
+            description: 'Luxurious suite with 2 king bedrooms, living area & balcony.',
+            images: [{ url: 'Room1.0.png' }]
+        }
     ],
     bookings: [
-        { _id: 'b101', bookingNumber: 'HVT-2026-001', customerName: 'Rajesh Sharma', customerPhone: '+91 98765 43210', roomType: 'deluxe', checkInDate: '2026-09-05', checkOutDate: '2026-09-07', guests: 2, totalAmount: 4998, status: 'confirmed', paymentStatus: 'paid' },
-        { _id: 'b102', bookingNumber: 'HVT-2026-002', customerName: 'Amit Verma', customerPhone: '+91 98123 45678', roomType: 'executive', checkInDate: '2026-09-06', checkOutDate: '2026-09-08', guests: 2, totalAmount: 6998, status: 'pending', paymentStatus: 'pending' },
-        { _id: 'b103', bookingNumber: 'HVT-2026-003', customerName: 'Priya Singh', customerPhone: '+91 97531 86420', roomType: 'family', checkInDate: '2026-09-08', checkOutDate: '2026-09-11', guests: 4, totalAmount: 14997, status: 'confirmed', paymentStatus: 'paid' }
+        {
+            _id: 'b1',
+            bookingId: 'HVT-2026-001',
+            guestName: 'Rajesh Sharma',
+            guestPhone: '+91 98765 43210',
+            guestEmail: 'rajesh.sharma@example.com',
+            room: { _id: 'r1', name: 'Deluxe Room', type: 'deluxe' },
+            checkIn: '2026-09-05T00:00:00.000Z',
+            checkOut: '2026-09-07T00:00:00.000Z',
+            guests: 2,
+            nights: 2,
+            pricePerNight: 2499,
+            totalAmount: 4998,
+            finalAmount: 4998,
+            status: 'confirmed',
+            paymentStatus: 'paid',
+            createdAt: '2026-09-04T10:00:00.000Z'
+        },
+        {
+            _id: 'b2',
+            bookingId: 'HVT-2026-002',
+            guestName: 'Amit Verma',
+            guestPhone: '+91 98123 45678',
+            guestEmail: 'amit.verma@example.com',
+            room: { _id: 'r2', name: 'Executive Room', type: 'executive' },
+            checkIn: '2026-09-06T00:00:00.000Z',
+            checkOut: '2026-09-08T00:00:00.000Z',
+            guests: 2,
+            nights: 2,
+            pricePerNight: 3499,
+            totalAmount: 6998,
+            finalAmount: 6998,
+            status: 'pending',
+            paymentStatus: 'pending',
+            createdAt: '2026-09-04T14:30:00.000Z'
+        },
+        {
+            _id: 'b3',
+            bookingId: 'HVT-2026-003',
+            guestName: 'Priya Singh',
+            guestPhone: '+91 97531 86420',
+            guestEmail: 'priya.singh@example.com',
+            room: { _id: 'r3', name: 'Family Suite', type: 'family' },
+            checkIn: '2026-09-08T00:00:00.000Z',
+            checkOut: '2026-09-11T00:00:00.000Z',
+            guests: 4,
+            nights: 3,
+            pricePerNight: 4999,
+            totalAmount: 14997,
+            finalAmount: 14997,
+            status: 'confirmed',
+            paymentStatus: 'paid',
+            createdAt: '2026-09-03T18:20:00.000Z'
+        }
     ],
     customers: [
-        { _id: 'c1', name: 'Rajesh Sharma', phone: '+91 98765 43210', email: 'rajesh.sharma@example.com', totalBookings: 3, totalSpent: 14994, lastBooking: '2026-09-05' },
-        { _id: 'c2', name: 'Amit Verma', phone: '+91 98123 45678', email: 'amit.verma@example.com', totalBookings: 1, totalSpent: 6998, lastBooking: '2026-09-06' },
-        { _id: 'c3', name: 'Priya Singh', phone: '+91 97531 86420', email: 'priya.singh@example.com', totalBookings: 2, totalSpent: 22495, lastBooking: '2026-09-08' }
+        {
+            _id: 'c1',
+            name: 'Rajesh Sharma',
+            email: 'rajesh.sharma@example.com',
+            phone: '+91 98765 43210',
+            totalBookings: 3,
+            isBlocked: false,
+            createdAt: '2026-08-10T00:00:00.000Z'
+        },
+        {
+            _id: 'c2',
+            name: 'Amit Verma',
+            email: 'amit.verma@example.com',
+            phone: '+91 98123 45678',
+            totalBookings: 1,
+            isBlocked: false,
+            createdAt: '2026-08-22T00:00:00.000Z'
+        },
+        {
+            _id: 'c3',
+            name: 'Priya Singh',
+            email: 'priya.singh@example.com',
+            phone: '+91 97531 86420',
+            totalBookings: 2,
+            isBlocked: false,
+            createdAt: '2026-08-25T00:00:00.000Z'
+        }
     ],
     reviews: [
-        { _id: 'rev1', name: 'Sunil Gupta', rating: 5, comment: 'Exceptional hospitality, spacious and clean rooms! The pool was fantastic.', isApproved: true, createdAt: '2026-08-28' },
-        { _id: 'rev2', name: 'Ananya Roy', rating: 4, comment: 'Great location in Chhatarpur, delicious food at restaurant.', isApproved: true, createdAt: '2026-08-30' },
-        { _id: 'rev3', name: 'Vikram Mehta', rating: 5, comment: 'Staff was very courteous and helpful during our family trip.', isApproved: true, createdAt: '2026-09-01' }
-    ]
+        {
+            _id: 'rev1',
+            customer: { name: 'Sunil Gupta' },
+            room: { name: 'Deluxe Room' },
+            rating: 5,
+            comment: 'Exceptional hospitality, spacious and clean rooms! The pool was fantastic.',
+            status: 'approved',
+            createdAt: '2026-08-28T00:00:00.000Z'
+        },
+        {
+            _id: 'rev2',
+            customer: { name: 'Ananya Roy' },
+            room: { name: 'Executive Room' },
+            rating: 4,
+            comment: 'Great location in Chhatarpur, delicious food at restaurant.',
+            status: 'approved',
+            createdAt: '2026-08-30T00:00:00.000Z'
+        },
+        {
+            _id: 'rev3',
+            customer: { name: 'Vikram Mehta' },
+            room: { name: 'Family Suite' },
+            rating: 5,
+            comment: 'Staff was very courteous and helpful during our family trip.',
+            status: 'pending',
+            createdAt: '2026-09-01T00:00:00.000Z'
+        }
+    ],
+    gallery: [
+        { _id: 'g1', title: 'Hotel Exterior', category: 'exterior', url: 'Front Img.png' },
+        { _id: 'g2', title: 'Swimming Pool', category: 'facilities', url: 'Pool.jpeg' },
+        { _id: 'g3', title: 'Grand Reception', category: 'facilities', url: 'Reception.jpeg' },
+        { _id: 'g4', title: 'Deluxe Bedroom', category: 'rooms', url: 'Room1.jpeg' }
+    ],
+    messages: [
+        {
+            _id: 'm1',
+            name: 'Vikas Kumar',
+            email: 'vikas@gmail.com',
+            subject: 'Wedding Lawn Booking Inquiry',
+            message: 'Hello, we want to book lawn and 15 rooms for family marriage in November.',
+            status: 'unread',
+            createdAt: '2026-09-04T12:00:00.000Z'
+        },
+        {
+            _id: 'm2',
+            name: 'Pooja Pandey',
+            email: 'pooja.p@outlook.com',
+            subject: 'Conference Hall Availability',
+            message: 'Need conference hall with projector for 40 people next week.',
+            status: 'read',
+            createdAt: '2026-09-03T09:15:00.000Z'
+        }
+    ],
+    settings: {
+        hotelName: 'Hotel Vijay Tara',
+        contact: {
+            phone: '+91 80900 54641',
+            email: 'info@hotelvijaytara.com',
+            whatsapp: '+918090054641',
+            address: 'Aurangabad - Daltenganj Rd, Main Road, Chhatarpur, Jharkhand 822113'
+        }
+    }
 };
 
 function getFallbackMock(endpoint, method, body) {
@@ -169,6 +336,9 @@ function getFallbackMock(endpoint, method, body) {
             throw new Error('Invalid credentials! Default: admin@hotelvijaytara.com / Admin@123');
         }
     }
+    if (endpoint.includes('/auth/change-password')) {
+        return { success: true, message: 'Password updated successfully' };
+    }
     if (endpoint.includes('/admin/dashboard')) {
         return {
             success: true,
@@ -180,33 +350,118 @@ function getFallbackMock(endpoint, method, body) {
                 availableRooms: 12,
                 occupiedRooms: 6,
                 pendingBookings: 1,
-                totalCustomers: 58,
-                recentBookings: mockDb.bookings
+                totalCustomers: 58
             }
         };
     }
-    if (endpoint.includes('/bookings')) {
-        return { success: true, data: { bookings: mockDb.bookings, pagination: { total: mockDb.bookings.length, pages: 1 } } };
+    if (endpoint.startsWith('/bookings')) {
+        if (method === 'PUT' && endpoint.includes('/status')) {
+            const parts = endpoint.split('/');
+            const id = parts[2];
+            const item = mockDb.bookings.find(b => b._id === id);
+            if (item && body && body.status) item.status = body.status;
+            return { success: true, message: 'Status updated' };
+        }
+        if (method === 'DELETE') {
+            const parts = endpoint.split('/');
+            const id = parts[2];
+            mockDb.bookings = mockDb.bookings.filter(b => b._id !== id);
+            return { success: true, message: 'Booking deleted' };
+        }
+        return { success: true, data: mockDb.bookings };
     }
-    if (endpoint.includes('/rooms')) {
+    if (endpoint.startsWith('/rooms')) {
+        if (method === 'POST') {
+            const newRoom = { _id: 'r' + Date.now(), ...body };
+            mockDb.rooms.push(newRoom);
+            return { success: true, data: newRoom };
+        }
+        if (method === 'PUT') {
+            const parts = endpoint.split('/');
+            const id = parts[2];
+            const idx = mockDb.rooms.findIndex(r => r._id === id);
+            if (idx !== -1) mockDb.rooms[idx] = { ...mockDb.rooms[idx], ...body };
+            return { success: true, data: mockDb.rooms[idx] };
+        }
+        if (method === 'DELETE') {
+            const parts = endpoint.split('/');
+            const id = parts[2];
+            mockDb.rooms = mockDb.rooms.filter(r => r._id !== id);
+            return { success: true, message: 'Room deleted' };
+        }
         return { success: true, data: mockDb.rooms };
     }
-    if (endpoint.includes('/customers')) {
-        return { success: true, data: { customers: mockDb.customers, pagination: { total: mockDb.customers.length, pages: 1 } } };
+    if (endpoint.startsWith('/customers')) {
+        if (method === 'PUT' && endpoint.includes('/block')) {
+            const parts = endpoint.split('/');
+            const id = parts[2];
+            const c = mockDb.customers.find(item => item._id === id);
+            if (c) c.isBlocked = !c.isBlocked;
+            return { success: true, message: 'Status updated' };
+        }
+        if (method === 'DELETE') {
+            const parts = endpoint.split('/');
+            const id = parts[2];
+            mockDb.customers = mockDb.customers.filter(c => c._id !== id);
+            return { success: true, message: 'Customer deleted' };
+        }
+        return { success: true, data: mockDb.customers };
     }
-    if (endpoint.includes('/reviews')) {
-        return { success: true, data: { reviews: mockDb.reviews, pagination: { total: mockDb.reviews.length, pages: 1 } } };
+    if (endpoint.startsWith('/reviews')) {
+        if (method === 'PUT' && endpoint.includes('/status')) {
+            const parts = endpoint.split('/');
+            const id = parts[2];
+            const rev = mockDb.reviews.find(r => r._id === id);
+            if (rev && body && body.status) rev.status = body.status;
+            return { success: true, message: 'Status updated' };
+        }
+        if (method === 'DELETE') {
+            const parts = endpoint.split('/');
+            const id = parts[2];
+            mockDb.reviews = mockDb.reviews.filter(r => r._id !== id);
+            return { success: true, message: 'Review deleted' };
+        }
+        return { success: true, data: mockDb.reviews };
     }
-    if (endpoint.includes('/gallery')) {
-        return { success: true, data: [] };
+    if (endpoint.startsWith('/gallery')) {
+        if (method === 'POST') {
+            const item = { _id: 'g' + Date.now(), ...body };
+            mockDb.gallery.push(item);
+            return { success: true, data: item };
+        }
+        if (method === 'DELETE') {
+            const parts = endpoint.split('/');
+            const id = parts[2];
+            mockDb.gallery = mockDb.gallery.filter(g => g._id !== id);
+            return { success: true, message: 'Deleted' };
+        }
+        return { success: true, data: mockDb.gallery };
     }
-    if (endpoint.includes('/contact')) {
-        return { success: true, data: [] };
+    if (endpoint.startsWith('/contact')) {
+        if (method === 'PUT' && endpoint.includes('/reply')) {
+            const parts = endpoint.split('/');
+            const id = parts[2];
+            const m = mockDb.messages.find(item => item._id === id);
+            if (m) m.status = 'replied';
+            return { success: true, message: 'Reply sent' };
+        }
+        if (method === 'DELETE') {
+            const parts = endpoint.split('/');
+            const id = parts[2];
+            mockDb.messages = mockDb.messages.filter(m => m._id !== id);
+            return { success: true, message: 'Deleted' };
+        }
+        return { success: true, data: mockDb.messages };
     }
-    if (endpoint.includes('/settings')) {
-        return { success: true, data: { hotelName: 'Hotel Vijay Tara', phone: '+91 80900 54641', email: 'info@hotelvijaytara.com' } };
+    if (endpoint.startsWith('/settings')) {
+        if (method === 'PUT') {
+            if (body && body.hotelName) mockDb.settings.hotelName = body.hotelName;
+            if (body && body.contact) mockDb.settings.contact = { ...mockDb.settings.contact, ...body.contact };
+            return { success: true, message: 'Settings saved' };
+        }
+        return { success: true, data: mockDb.settings };
     }
-    return { success: true, data: {} };
+    return { success: true, data: [] };
 }
 
 // API Helper
@@ -368,7 +623,8 @@ async function loadDashboard() {
 
         // Render Recent Bookings Table
         const recentRes = await apiFetch('/bookings?limit=6');
-        renderRecentBookings(recentRes.data || []);
+        const recentList = Array.isArray(recentRes.data) ? recentRes.data : (recentRes.data?.bookings || []);
+        renderRecentBookings(recentList);
 
         // Render Revenue Chart
         renderRevenueChart();
@@ -415,9 +671,16 @@ function renderRevenueChart() {
 async function loadBookings() {
     try {
         const res = await apiFetch('/bookings?limit=100');
-        allBookings = res.data || [];
+        if (Array.isArray(res.data)) {
+            allBookings = res.data;
+        } else if (res.data && Array.isArray(res.data.bookings)) {
+            allBookings = res.data.bookings;
+        } else {
+            allBookings = [];
+        }
         filterBookingsTable();
     } catch (err) {
+        console.error('Failed to load bookings:', err);
         showToast('Failed to load bookings', 'error');
     }
 }
@@ -558,9 +821,10 @@ function viewInvoice(id) {
 async function loadRooms() {
     try {
         const res = await apiFetch('/rooms');
-        allRooms = res.data || [];
+        allRooms = Array.isArray(res.data) ? res.data : (res.data?.rooms || []);
         renderRoomsGrid();
     } catch (err) {
+        console.error('Failed to load rooms:', err);
         showToast('Failed to load rooms', 'error');
     }
 }
@@ -672,8 +936,10 @@ async function deleteRoom(id) {
 async function loadCustomers() {
     try {
         const res = await apiFetch('/customers');
-        renderCustomersTable(res.data || []);
+        const list = Array.isArray(res.data) ? res.data : (res.data?.customers || []);
+        renderCustomersTable(list);
     } catch (err) {
+        console.error('Failed to load customers:', err);
         showToast('Failed to load customers', 'error');
     }
 }
@@ -740,8 +1006,10 @@ async function loadReviews() {
     try {
         const status = document.getElementById('reviewFilterStatus')?.value || '';
         const res = await apiFetch(`/reviews${status ? `?status=${status}` : ''}`);
-        renderReviewsTable(res.data || []);
+        const list = Array.isArray(res.data) ? res.data : (res.data?.reviews || []);
+        renderReviewsTable(list);
     } catch (err) {
+        console.error('Failed to load reviews:', err);
         showToast('Failed to load reviews', 'error');
     }
 }
@@ -796,8 +1064,10 @@ async function deleteReview(id) {
 async function loadGallery() {
     try {
         const res = await apiFetch('/gallery');
-        renderGalleryGrid(res.data || []);
+        const list = Array.isArray(res.data) ? res.data : (res.data?.items || []);
+        renderGalleryGrid(list);
     } catch (err) {
+        console.error('Failed to load gallery:', err);
         showToast('Failed to load gallery', 'error');
     }
 }
@@ -850,7 +1120,7 @@ async function deleteGalleryItem(id) {
 async function loadMessages() {
     try {
         const res = await apiFetch('/contact');
-        const messages = res.data || [];
+        const messages = Array.isArray(res.data) ? res.data : (res.data?.messages || []);
         renderMessagesTable(messages);
 
         const unread = messages.filter(m => m.status === 'unread').length;
@@ -862,6 +1132,7 @@ async function loadMessages() {
             msgBadge.classList.add('hidden');
         }
     } catch (err) {
+        console.error('Failed to load messages:', err);
         showToast('Failed to load messages', 'error');
     }
 }
