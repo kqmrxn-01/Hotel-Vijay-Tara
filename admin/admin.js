@@ -5,7 +5,19 @@ const API_BASE = (window.location.protocol === 'file:' || ((window.location.host
 
 // State
 let token = localStorage.getItem('hvt_admin_token') || null;
-let currentAdmin = JSON.parse(localStorage.getItem('hvt_admin_user') || 'null');
+let currentAdmin = null;
+try {
+    const rawUser = localStorage.getItem('hvt_admin_user');
+    if (rawUser && rawUser !== 'undefined' && rawUser !== 'null') {
+        currentAdmin = JSON.parse(rawUser);
+    }
+} catch (e) {
+    console.warn('Resetting corrupt admin session:', e);
+    currentAdmin = null;
+    localStorage.removeItem('hvt_admin_user');
+    localStorage.removeItem('hvt_admin_token');
+    token = null;
+}
 let currentTab = 'dashboard';
 let allBookings = [];
 let allRooms = [];
@@ -199,6 +211,14 @@ function getFallbackMock(endpoint, method, body) {
 
 // API Helper
 async function apiFetch(endpoint, method = 'GET', body = null) {
+    const isStaticHost = window.location.hostname.includes('github.io') || window.location.protocol === 'file:';
+    
+    // On static hosting (like GitHub Pages), immediately use demo mock data
+    if (isStaticHost) {
+        const mock = getFallbackMock(endpoint, method, body);
+        if (mock) return mock;
+    }
+
     const headers = { 'Content-Type': 'application/json' };
     if (token) headers['Authorization'] = `Bearer ${token}`;
 
@@ -207,6 +227,15 @@ async function apiFetch(endpoint, method = 'GET', body = null) {
 
     try {
         const response = await fetch(`${API_BASE}${endpoint}`, config);
+        
+        // If server returned 404 or HTML (e.g. GitHub Pages 404.html), handle cleanly
+        const contentType = response.headers.get('content-type') || '';
+        if (!contentType.includes('application/json')) {
+            const mock = getFallbackMock(endpoint, method, body);
+            if (mock) return mock;
+            throw new Error(`Server returned non-JSON response (${response.status})`);
+        }
+
         const data = await response.json();
         
         if (response.status === 401) {
@@ -250,14 +279,10 @@ async function handleLogin(e) {
 
         showToast('Login successful! Welcome to Admin Panel', 'success');
         showAppView();
-        if (window.location.protocol !== 'file:') {
-            window.history.pushState({}, '', '/admin/dashboard');
-        }
         switchTab('dashboard');
     } catch (err) {
         showToast(err.message || 'Login failed', 'error');
     } finally {
-
         btn.disabled = false;
         btn.innerHTML = '<span>Sign In to Dashboard</span> <i class="fas fa-arrow-right"></i>';
     }
